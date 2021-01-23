@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Extract unique character from a string</title>
+</head>
+<body>
+<script type="text/javascript">
+	/**
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function(s) {
+    var result = -1;
+    var uniq = {};
+    
+    for (var i=0; i<s.length; i++) {
+        if (uniq[s[i]]) {
+            uniq[s[i]].value++;
+        }
+        else {
+            uniq[s[i]] = { index: i, value: 1 };
+        }
+    }
+    
+    for (var i=0; i<Object.keys(uniq).length; i++) {
+        var key = Object.keys(uniq)[i];
+        if (uniq[key].value === 1) {
+            result = uniq[key].index;
+            break;
+        }
+    }
+    
+    return result;
+};
+
+console.log(firstUniqChar("navin"));
+
+</script>
+</body>
+</html>
